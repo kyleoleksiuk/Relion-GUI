@@ -1,0 +1,13 @@
+%%bash
+../Downloads/unblur_1.0.2/src/unblur 
+Oct19_10.00.55_DW.mrc
+100
+aligned_sum.mrc
+movie_shifts.txt
+1
+YES
+1.4
+300
+No
+No
+No
