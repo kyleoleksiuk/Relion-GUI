@@ -119,7 +119,18 @@ def clicked(s):
         
         #corrected
         #print_input(4)
-        %run ./RunUnblur.ipynb
+        f= open("text.txt","w+")
+        for entry in entries:
+            f.write(entry.get()+"\n")
+        f.close()
+        with open("text.txt") as f:
+            content = f.readlines()
+            content = [x.strip() for x in content] 
+        if (content[0]!=names[0]):
+            !../Downloads/unblur_1.0.2/src/unblur < text.txt
+        else:
+            !../Downloads/unblur_1.0.2/src/unblur < defaults.txt
+        f.close()
         App = LoadImage('current.png',200,200,1,0,1)
 
         #corrected, fourier transform
@@ -130,7 +141,6 @@ def clicked(s):
     
     else:
         #for non-mrcs, for testing
-        
         App = LoadImage(s,200,200,0,0,1)
         App = LoadImage(s,200,200,0,1,1)
         App = LoadImage(s,200,200,1,0,1)
@@ -209,12 +219,13 @@ OutputBox.grid(row=1, column=0, sticky=W+E+N+S)
 
 #unblur input
 w = Label(SelectionFrame, text="Unblur Input").grid(row=9,column=0,sticky=N+E+S+W)
-w = Label(SelectionFrame, text="\n\n\n\n\n\n\n\n\n\n\n\n").grid(row=8,column=0,sticky=N+E+S+W)
+w = Label(SelectionFrame, text="\n\n\n\n\n\n\n\n").grid(row=8,column=0,sticky=N+E+S+W)
 
-entries = [Entry(SelectionFrame, width = 20, bg = "light grey") for _ in range(6)]
 x = 10
-names = ["Number of Frames","Output Filename","Shifts Output Filename",
-         "Pixel Size","Exposure Per Frame","Acceleration Voltage"]
+names = ["Input stack filename","Number of frames per movie","Output aligned sum file","Output shifts file",
+         "Pixel size of images (A)","Apply Dose filter?","Save Aligned Frames?","Set Expert Options?"]
+entries = [Entry(SelectionFrame, width = 20, bg = "light grey") for _ in range(8)]
+
 for entry in entries:
     entry.grid(row=x, column=0, sticky=W)
     entry.insert(0, names[x-10])
