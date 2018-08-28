@@ -1,0 +1,8 @@
+Oct19_10.00.55_DW.mrc
+1
+aligned_sum.mrc
+movie_shifts.txt
+1
+No
+No
+No
